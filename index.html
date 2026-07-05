@@ -407,7 +407,8 @@ section:not(#hero){padding:100px 5vw}
 
 @media(max-width:860px){
   .about-split{grid-template-columns:1fr;gap:32px}
-  .about-img-frame{height:260px}
+  .about-img-frame{height:auto;aspect-ratio:3/4}
+  .about-img-frame img{object-fit:contain;background:#f5ede2}
   .about-img-frame .section-img-placeholder{min-height:260px}
   .about-card{padding:36px 28px}
   .about-card blockquote{padding-left:20px}
@@ -764,7 +765,8 @@ blockquote.bub-mag,li.bub-mag{
 .exp-img-frame{height:480px;border-radius:28px}
 @media(max-width:860px){
   .exp-split{grid-template-columns:1fr;gap:32px}
-  .exp-img-frame{height:300px}
+  .exp-img-frame{height:auto;aspect-ratio:4/3;border-radius:20px}
+  .exp-img-frame img{object-fit:contain;background:#e8ecf0}
 }
 
 /* ─── RESPONSIVE ─── */

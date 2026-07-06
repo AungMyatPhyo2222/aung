@@ -320,6 +320,9 @@ section:not(#hero){padding:100px 5vw}
   font-size:clamp(28px,4vw,44px);font-weight:800;line-height:1.1;letter-spacing:-.02em;
   color:var(--text-dark);margin-bottom:48px;
 }
+.section-title--accent{
+  color:var(--accent-violet);
+}
 
 /* ─── ABOUT ─── */
 #about{background:var(--white)}
@@ -675,7 +678,8 @@ body.bub-active, body.bub-active *{ cursor:none!important; }
     inset 0 0 9px rgba(255,255,255,.42),
     inset 2px 2px 5px rgba(255,255,255,.55),
     0 0 14px rgba(125,211,252,.14),
-    0 3px 10px rgba(0,0,0,.07);
+    0 4px 12px rgba(0,0,0,.22),
+    0 8px 20px rgba(0,0,0,.12);
   backdrop-filter:blur(2px);
   -webkit-backdrop-filter:blur(2px);
 }
@@ -855,7 +859,7 @@ to{transform:rotate(360deg)}
     <div>
       <div class="hero-eyebrow" data-reveal>✦ Sales Specialist</div>
       <h1 class="hero-name" id="hero-name">AUNG MYAT PHYO</h1>
-      <!--<p class="hero-title" data-reveal>SALES SPECIALIST</p>-->
+      <p class="hero-title" data-reveal>SALES SPECIALIST</p>
       <p class="hero-subtitle" data-reveal>PORTFOLIO</p>
       <div class="hero-actions" data-reveal>
         <a href="#contact" class="btn-primary">Get In Touch</a>
@@ -873,7 +877,7 @@ to{transform:rotate(360deg)}
         <div class="hero-float-card card-1">
           <span class="float-dot violet"></span>
           <div>
-            <div class="float-card-text">Sales Executive</div>
+            <div class="float-card-text">Sales Cum Store Executive</div>
             <div class="float-card-sub">Sunfront Pvt Ltd.</div>
           </div>
         </div>
@@ -895,8 +899,7 @@ to{transform:rotate(360deg)}
 <section id="about" aria-label="About">
   <canvas class="section-bg-canvas" id="about-canvas" aria-hidden="true"></canvas>
   <div class="section-inner">
-    <span class="section-title" data-reveal>About me</span>
-    <!--<h2 class="section-title" data-reveal>About me</h2>-->
+    <h2 class="section-title section-title--accent" data-reveal>About Me</h2>
     <div class="about-split">
       <div class="section-img-wrap" data-reveal="left">
         <div class="section-img-frame about-img-frame">
@@ -918,8 +921,7 @@ to{transform:rotate(360deg)}
 <section id="education" aria-label="Education">
   <canvas class="section-bg-canvas" id="edu-canvas" aria-hidden="true"></canvas>
   <div class="section-inner">
-    <span class="section-title" data-reveal>Education</span>
-    <!--<h2 class="section-title" data-reveal>Education</h2>-->
+    <h2 class="section-title section-title--accent" data-reveal>Education</h2>
     <div class="edu-card" data-reveal="scale">
       <div class="edu-accent-bar"></div>
       <h3 class="edu-degree">Master of Business Administration</h3>

@@ -497,23 +497,86 @@ footer{
 .tilt-card{transform-style:preserve-3d;will-change:transform}
 
 /* ── RESPONSIVE ── */
+
+/* ── TABLET ── */
+@media(max-width:1024px){
+  .hero-inner{gap:32px}
+  .hero-image-frame{width:440px;height:580px}
+  .section-inner{max-width:100%}
+}
+
+/* ── SMALL TABLET ── */
 @media(max-width:860px){
-  .about-split{grid-template-columns:1fr;gap:32px}
-  .about-img-frame{aspect-ratio:4/3;max-width:300px;margin:0 auto}
+  .about-split{grid-template-columns:1fr;gap:40px}
+  .about-img-frame{aspect-ratio:3/4;max-width:260px;margin:0 auto}
   .exp-grid{grid-template-columns:1fr}
   .exp-img-wrap{display:none}
-  .about-card{padding:36px 28px}
-  .edu-card{padding:36px 28px}
+  .about-card{padding:32px 24px}
+  .edu-card{padding:32px 24px}
+  .contact-grid{grid-template-columns:1fr}
+  .hero-inner{gap:24px}
+  .hero-image-frame{width:380px;height:500px}
 }
+
+/* ── MOBILE ── */
 @media(max-width:700px){
-  .hero-inner{grid-template-columns:1fr;gap:48px;padding:48px 0}
-  .hero-image-wrap{justify-content:center}
-  .hero-image-frame{width:360px;height:460px}
-  
-  
+  nav{padding:0 20px}
   .nav-links{display:none}
   .hamburger{display:flex}
   .mobile-nav{display:flex}
+
+  #hero{padding:68px 20px 0}
+  .hero-inner{
+    grid-template-columns:1fr;
+    gap:0;padding:32px 0 0;
+  }
+  .hero-image-wrap{
+    justify-content:center;
+    order:-1;
+    margin-top:20px;
+  }
+  .hero-image-frame{
+    width:260px;height:340px;
+    margin-top:0;
+  }
+  .hero-eyebrow{font-size:9px;padding:5px 12px;margin-bottom:20px}
+  .hero-name{font-size:clamp(32px,9vw,48px);margin-bottom:10px}
+  .hero-subtitle{font-size:10px;margin-bottom:8px}
+  .hero-tagline{font-size:13px;margin-bottom:32px;margin-top:8px}
+  .hero-actions{gap:12px;flex-direction:column;align-items:flex-start}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center}
+
+  section:not(#hero){padding:80px 20px}
+  .section-inner{padding-top:24px}
+  .section-title{font-size:clamp(26px,8vw,36px);margin-bottom:40px}
+
+  .about-split{grid-template-columns:1fr;gap:32px}
+  .about-img-frame{max-width:220px;aspect-ratio:3/4;margin:0 auto}
+  .about-card{padding:28px 20px}
+  .about-card blockquote{font-size:16px;padding-left:20px}
+
+  .edu-card{padding:28px 20px}
+  .edu-degree{font-size:18px}
+
+  .timeline{padding-left:0}
+  .tl-role{font-size:18px}
+  .tl-body{padding-bottom:36px}
+  .exp-img-wrap{display:none}
+
+  .contact-grid{grid-template-columns:1fr;gap:14px}
+  .contact-card{padding:24px 20px}
+
+  footer{padding:20px;flex-direction:column;align-items:flex-start;gap:6px}
+  .footer-note{font-size:9px}
+
+  .section-divider{display:none}
+}
+
+/* ── VERY SMALL MOBILE ── */
+@media(max-width:380px){
+  .hero-image-frame{width:220px;height:290px}
+  .hero-name{font-size:28px}
+  .btn-primary,.btn-secondary{padding:12px 20px;font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}

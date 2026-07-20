@@ -131,6 +131,51 @@ nav.scrolled{border-color:rgba(200,169,110,0.18);background:rgba(9,9,15,0.95)}
 [data-stagger].revealed>*:nth-child(3){transition-delay:.24s}
 [data-stagger].revealed>*{opacity:1;transform:none}
 
+/* ── PRELOADER ── */
+#preloader{
+  position:fixed;inset:0;z-index:99997;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .6s ease,visibility .6s ease;
+}
+#preloader.hide{opacity:0;visibility:hidden;pointer-events:none}
+.preload-word{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-weight:800;letter-spacing:.02em;
+  font-size:clamp(22px,4.4vw,52px);
+  color:var(--text);
+}
+.preload-letter{
+  display:inline-block;
+  opacity:0;
+  transform:translateX(-70px) translateY(0) scale(.6);
+  animation:letterBounce .85s cubic-bezier(.28,1.4,.42,1) forwards;
+}
+.preload-space{width:.32em;display:inline-block}
+.preload-letter.gold{color:var(--gold)}
+@keyframes letterBounce{
+  0%{opacity:0;transform:translateX(-70px) translateY(0) scale(.6)}
+  45%{opacity:1;transform:translateX(8px) translateY(-14px) scale(1.08)}
+  65%{transform:translateX(-4px) translateY(4px) scale(.97)}
+  82%{transform:translateX(2px) translateY(-2px) scale(1.01)}
+  100%{opacity:1;transform:translateX(0) translateY(0) scale(1)}
+}
+#preloader .preload-bar{
+  position:absolute;bottom:14%;left:50%;transform:translateX(-50%);
+  width:120px;height:2px;background:rgba(200,169,110,0.15);
+  border-radius:2px;overflow:hidden;
+}
+#preloader .preload-bar::after{
+  content:'';display:block;height:100%;width:40%;
+  background:linear-gradient(90deg,var(--gold-d),var(--gold),var(--gold-l));
+  animation:preloadBarMove 1.6s ease-in-out infinite;
+}
+@keyframes preloadBarMove{
+  0%{transform:translateX(-120%)}
+  100%{transform:translateX(320%)}
+}
+
 /* ── HERO ── */
 #hero{
   min-height:100vh;padding:68px 5vw 0;
@@ -586,6 +631,13 @@ footer{
 </head>
 <body>
 
+<div id="preloader" aria-hidden="true">
+  <div>
+    <div class="preload-word" id="preload-word"></div>
+    <div class="preload-bar"></div>
+  </div>
+</div>
+
 <div id="cur-dot"></div>
 <div id="cur-ring"></div>
 <div id="progress-bar"></div>
@@ -770,6 +822,58 @@ footer{
 <script>
 (function() {
 'use strict';
+
+/* ── PRELOADER ── */
+(function() {
+  var text = 'AUNG MYAT PHYO';
+  var wrap = document.getElementById('preload-word');
+  var preloader = document.getElementById('preloader');
+  if (!wrap || !preloader) return;
+
+  document.body.style.overflow = 'hidden';
+
+  var delay = 0.055;      /* seconds between each letter's start */
+  var duration = 0.85;    /* matches animation length in CSS */
+  var i = 0;
+  text.split('').forEach(function(ch) {
+    var span = document.createElement('span');
+    if (ch === ' ') {
+      span.className = 'preload-space';
+      wrap.appendChild(span);
+      return;
+    }
+    span.className = 'preload-letter';
+    if (ch === 'P' || ch === 'H' || ch === 'Y' || ch === 'O') {
+      /* subtle gold accent on the surname for visual interest */
+      span.className += ' gold';
+    }
+    span.textContent = ch;
+    span.style.animationDelay = (i * delay) + 's';
+    wrap.appendChild(span);
+    i++;
+  });
+
+  var totalTime = (i * delay + duration) * 1000;
+  var minShow = 1400; /* always show briefly even on fast connections */
+  var elapsed = 0;
+
+  function finishLoading() {
+    preloader.classList.add('hide');
+    document.body.style.overflow = '';
+    setTimeout(function() { preloader.remove(); }, 650);
+  }
+
+  var start = Date.now();
+  window.addEventListener('load', function() {
+    elapsed = Date.now() - start;
+    var wait = Math.max(totalTime, minShow) - elapsed;
+    setTimeout(finishLoading, Math.max(wait, 0));
+  });
+  /* fallback in case load event already fired or is delayed */
+  setTimeout(function() {
+    if (document.body.contains(preloader)) finishLoading();
+  }, Math.max(totalTime, minShow) + 2500);
+})();
 
 /* ── CURSOR ── */
 var dot = document.getElementById('cur-dot');
